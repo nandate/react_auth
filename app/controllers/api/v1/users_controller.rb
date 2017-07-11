@@ -5,7 +5,10 @@ module Api
 
       def index
         @users = User.all
-        render json: @users, status: 200
+      end
+
+      def new
+        @user = User.new
       end
 
       def create
@@ -13,12 +16,20 @@ module Api
         if @user.save
           render json: @user, status: 201
         else
-          render json: @user.errors, status:422
+          render json: @user.errors, status: 422
         end
       end
 
       def show
         render json: @user, status: 200
+      end
+
+      def edit
+        if @user
+          render json: @user, only: [:email,:name], status: 200
+        else
+          render text: "Unidentified user", status: 422
+        end
       end
 
       def update
@@ -37,11 +48,11 @@ module Api
       private
 
       def set_user
-        @user = User.find(params[:id])
+        @user = User.find_by(access_token: params[:access_token])
       end
 
       def user_params
-        params.permit(:name,:email,:password)
+        params.require(:user).permit(:name,:email,:password,:password_confirmation)
       end
 
     end

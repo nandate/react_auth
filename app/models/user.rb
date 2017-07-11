@@ -16,9 +16,8 @@ class User < ApplicationRecord
   def User.new_token
     SecureRandom.urlsafe_base64
   end
-
+  
   private
-
   def downcase_email
     self.email = email.downcase
   end
@@ -28,6 +27,5 @@ class User < ApplicationRecord
       self.access_token = User.new_token
     end while self.class.exists?(access_token: access_token)
   end
-
 
 end

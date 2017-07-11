@@ -4,8 +4,9 @@ Rails.application.routes.draw do
     namespace :v1 do
       post 'login' => 'sessions#create'
       delete 'logout' => 'sessions#destroy'
-      get 'verify' => 'sessions#verify_access_token'
-      resources :users, params: :access_token
+      get 'login' => 'sessions#new'
+      get 'verify'  => 'sessions#verify_access_token'
+      resources :users, param: :access_token
     end
   end
 
