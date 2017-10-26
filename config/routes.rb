@@ -7,6 +7,7 @@ Rails.application.routes.draw do
       get 'login' => 'sessions#new'
       get 'verify'  => 'sessions#verify_access_token'
       resources :users, param: :access_token
+      resources :products
     end
   end
 

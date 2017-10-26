@@ -16,10 +16,13 @@ ActiveRecord::Schema.define(version: 20171026051451) do
     t.string   "name"
     t.string   "image"
     t.string   "term"
-    t.boolean  "islent"
+    t.string   "region"
+    t.integer  "rent_user_id"
+    t.boolean  "is_rent",      default: false
+    t.boolean  "is_return",    default: false
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
     t.index ["user_id"], name: "index_products_on_user_id"
   end
 
