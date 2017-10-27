@@ -10,7 +10,7 @@ module Api
         if user && user.authenticate(params[:session][:password])
           render json:  user.access_token, status: 200
         else
-          render text: "Error with your login or password", status: 422
+          render plain: "Error with your login or password", status: 422
         end
       end
 

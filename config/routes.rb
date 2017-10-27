@@ -6,7 +6,7 @@ Rails.application.routes.draw do
       delete 'logout' => 'sessions#destroy'
       get 'login' => 'sessions#new'
       get 'verify'  => 'sessions#verify_access_token'
-      resources :users, param: :access_token
+      resources :users
       resources :products
     end
   end

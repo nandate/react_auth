@@ -3,18 +3,18 @@ module Api
     class ProductsController < ApplicationController
 
       def create
-        @product = current_user.products.build(product_params)
+        @product = Product.new(product_params)
         if @product.save
           render json: @product, status: 201
         else
-          render json @product.error, status: 422
+          render json: @product.errors, status: 422
         end
       end
 
 
       private
         def product_params
-          params.require(:product).permit(:name, :image, :term, :region, :seller_id);
+          params.permit(:name, :image, :term, :region, :seller_id);
         end
     end
   end
