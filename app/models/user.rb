@@ -2,10 +2,9 @@ class User < ApplicationRecord
   before_save :downcase_email
   before_create :generate_access_token
 
-  has_many :products, dependent: :destroy
-  has_many :Borrowed_products, foreign_key: "rent_user_id", class_name: "Product"
-  has_many :saling_products, ->{ where("rent_user_id is NULL") }, foreign_key: "user_id", class_name: "Product"
-  has_many :sold_products, ->{ where("rent_user_id is not NULL") }, foreign_key: "user_id", class_name: "Product"
+  has_many :borrowed_products, foreign_key: "borrower_id", class_name: "Product"
+  has_many :saling_products, ->{ where("borrower_id is NULL") }, foreign_key: "seller_id", class_name: "Product"
+  has_many :sold_products, ->{ where("borrower_id is not NULL") }, foreign_key: "seller_id", class_name: "Product"
 
   validates :name, presence: true, length: { maximum: 50}
 
