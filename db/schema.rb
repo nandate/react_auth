@@ -17,13 +17,12 @@ ActiveRecord::Schema.define(version: 20171026051451) do
     t.string   "image"
     t.string   "term"
     t.string   "region"
-    t.integer  "rent_user_id"
-    t.boolean  "is_rent",      default: false
-    t.boolean  "is_return",    default: false
-    t.integer  "user_id"
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
-    t.index ["user_id"], name: "index_products_on_user_id"
+    t.integer  "seller_id"
+    t.integer  "borrower_id"
+    t.boolean  "is_rent",     default: false
+    t.boolean  "is_return",   default: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
   create_table "users", force: :cascade do |t|
