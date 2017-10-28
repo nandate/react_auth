@@ -25,8 +25,8 @@ module Api
 
       def rent
         user = User.find_by(access_token: params[:access_token])
-
-        if @product.update(borrower_id: user.id)
+        if user.id != @product.seller_id
+          @product.update(borrower_id: user.id)
           render json: @product, status: 200
         else
           render json: @product.errors, status: 422
@@ -35,8 +35,8 @@ module Api
 
       def meet
         user = User.find_by(access_token: params[:access_token])
-
-        if @product.update(is_rent: true)
+        if user.id == @product.seller_id || user.id == @product.borrower_id
+          @product.update(is_rent: true)
           render json: @product, status: 200
         else
           render json: @product.errors, status: 422
