@@ -48,13 +48,11 @@ module Api
       end
 
       def borrowed_products
-        @products = @user.borrowed_products
-        render json: @products, status: 200
+        render json: @user.borrowed_products, status: 200
       end
 
       def saling_products
-        @products = @user.saling_products
-        render json: @products, status: 200
+        render json: @user.saling_products, status: 200
       end
 
       def sold_products

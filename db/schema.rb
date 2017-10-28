@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171028010354) do
+ActiveRecord::Schema.define(version: 20171028062129) do
 
   create_table "products", force: :cascade do |t|
     t.string   "name"
@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 20171028010354) do
     t.string   "region"
     t.integer  "seller_id"
     t.integer  "borrower_id"
-    t.boolean  "is_rent",     default: false
+    t.boolean  "is_meet",     default: false
     t.boolean  "is_return",   default: false
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
