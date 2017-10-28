@@ -1,7 +1,9 @@
 module Api
   module V1
     class UsersController < ApplicationController
-      before_action :set_user, only: [:show, :edit, :update, :destroy]
+      before_action :set_user,
+                    only: [:show, :edit, :update, :destroy,
+                    :borrowed_products, :saling_products, :sold_products]
 
       def index
         @users = User.all
@@ -43,6 +45,21 @@ module Api
       def destroy
         @user.destroy
         head :no_content
+      end
+
+      def borrowed_products
+        @products = @user.borrowed_products
+        render json: @products, status: 200
+      end
+
+      def saling_products
+        @products = @user.saling_products
+        render json: @products, status: 200
+      end
+
+      def sold_products
+        @products = @user.sold_products
+        render json: @products, status: 200
       end
 
       private

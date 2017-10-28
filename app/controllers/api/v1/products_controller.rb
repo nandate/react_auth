@@ -25,6 +25,7 @@ module Api
 
       def rent
         user = User.find_by(access_token: params[:access_token])
+
         if @product.update(borrower_id: user.id)
           render json: @product, status: 200
         else
