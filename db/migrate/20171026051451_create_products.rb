@@ -12,5 +12,8 @@ class CreateProducts < ActiveRecord::Migration[5.0]
 
       t.timestamps
     end
+
+    add_index :products, :seller_id
+    add_index :products, :borrower_id
   end
 end

@@ -23,6 +23,8 @@ ActiveRecord::Schema.define(version: 20171026051451) do
     t.boolean  "is_return",   default: false
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
+    t.index ["borrower_id"], name: "index_products_on_borrower_id"
+    t.index ["seller_id"], name: "index_products_on_seller_id"
   end
 
   create_table "users", force: :cascade do |t|

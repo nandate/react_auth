@@ -48,7 +48,7 @@ module Api
       private
 
       def set_user
-        @user = User.find(params[:id])
+        @user = User.find_by(access_token: params[:access_token])
       end
 
       def user_params
