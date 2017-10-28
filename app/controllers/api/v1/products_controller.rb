@@ -1,7 +1,7 @@
 module Api
   module V1
     class ProductsController < ApplicationController
-      before_action :set_product, only: [:show, :rent]
+      before_action :set_product, only: [:show, :rent, :meet, :get_seller, :get_borrower]
 
       def index
         @products = Product.where(borrower_id: nil)
@@ -33,6 +33,25 @@ module Api
         end
       end
 
+      def meet
+        user = User.find_by(access_token: params[:access_token])
+
+        if @product.update(is_rent: true)
+          render json: @product, status: 200
+        else
+          render json: @product.errors, status: 422
+        end
+      end
+
+      def get_seller
+        render json: @product.seller, status: 200
+      end
+
+      def get_borrower
+        user = User.find(@product.borrower_id)
+        render json: user, status: 200
+      end
+
       private
         def product_params
           params.permit(:name, :image, :term, :region, :description);
@@ -41,6 +60,7 @@ module Api
         def set_product
           @product = Product.find(params[:id])
         end
+
     end
   end
 end

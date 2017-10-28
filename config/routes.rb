@@ -14,7 +14,10 @@ Rails.application.routes.draw do
 
       resources :products do
         member do
+          get :get_seller
+          get :get_borrower
           patch :rent
+          patch :meet
         end
       end
 

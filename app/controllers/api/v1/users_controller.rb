@@ -64,13 +64,13 @@ module Api
 
       private
 
-      def set_user
-        @user = User.find_by(access_token: params[:access_token])
-      end
+        def set_user
+          @user = User.find_by(access_token: params[:access_token])
+        end
 
-      def user_params
-        params.require(:user).permit(:name,:email,:password,:password_confirmation)
-      end
+        def user_params
+          params.require(:user).permit(:name,:email,:password,:password_confirmation)
+        end
 
     end
   end

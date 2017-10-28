@@ -6,6 +6,8 @@ class User < ApplicationRecord
   has_many :saling_products, ->{ where("borrower_id is NULL") }, foreign_key: "seller_id", class_name: "Product"
   has_many :sold_products, ->{ where("borrower_id is not NULL") }, foreign_key: "seller_id", class_name: "Product"
 
+
+
   validates :name, presence: true, length: { maximum: 50}
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\-.]+\.[a-z]+\z/i
