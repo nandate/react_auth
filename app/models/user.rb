@@ -3,7 +3,7 @@ class User < ApplicationRecord
   before_create :generate_access_token
 
   has_many :borrowed_products, foreign_key: "borrower_id", class_name: "Product"
-  has_mamy :borrowed_and_products, ->{ where("is_rent is not NULL")}, foreign_key: "borrower_id", class_name: "Product"
+  has_many :borrowed_and_products, ->{ where("is_rent is not NULL")}, foreign_key: "borrower_id", class_name: "Product"
   has_many :saling_products, ->{ where("borrower_id is NULL") }, foreign_key: "seller_id", class_name: "Product"
   has_many :sold_products, ->{ where("borrower_id is not NULL") }, foreign_key: "seller_id", class_name: "Product"
 

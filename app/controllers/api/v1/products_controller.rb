@@ -1,7 +1,7 @@
 module Api
   module V1
     class ProductsController < ApplicationController
-      before_action :set_product, only: [:show, :rent, :meet, :get_seller, :get_borrower]
+      before_action :set_product, only: [:show, :rent, :meet, ::get_seller, :get_borrower]
 
       def index
         @products = Product.where(borrower_id: nil)
@@ -38,6 +38,17 @@ module Api
         user = User.find_by(access_token: params[:access_token])
         if user.id == @product.seller_id || user.id == @product.borrower_id
           if @product.update(is_meet: true)
+            render json: @product, status: 200
+          else
+            render json: @product.errors, status: 422
+          end
+        end
+      end
+
+      def do_return
+        if(user.id == @product.seller_id || user.id == @product.borrower_id)
+          && @product.is_return == false
+          if @product.update(is_return: true)
             render json: @product, status: 200
           else
             render json: @product.errors, status: 422

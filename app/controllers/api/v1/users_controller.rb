@@ -56,8 +56,7 @@ module Api
       end
 
       def sold_products
-        @products = @user.sold_products
-        render json: @products, status: 200
+        render json: @user.sold_products, status: 200
       end
 
       private
