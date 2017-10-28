@@ -12,7 +12,12 @@ Rails.application.routes.draw do
         end
       end
 
-      resources :products
+      resources :products do
+        member do
+          patch :rent
+        end
+      end
+
     end
   end
 
