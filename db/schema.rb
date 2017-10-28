@@ -10,7 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170711051743) do
+ActiveRecord::Schema.define(version: 20171026051451) do
+
+  create_table "products", force: :cascade do |t|
+    t.string   "name"
+    t.string   "image"
+    t.string   "term"
+    t.string   "region"
+    t.integer  "seller_id"
+    t.integer  "borrower_id"
+    t.boolean  "is_rent",     default: false
+    t.boolean  "is_return",   default: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.index ["borrower_id"], name: "index_products_on_borrower_id"
+    t.index ["seller_id"], name: "index_products_on_seller_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
